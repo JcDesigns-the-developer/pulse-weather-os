@@ -1,0 +1,35 @@
+/* Pulse Weather OS — original LXQt panel stylesheet */
+QWidget {
+  background-color: #101820;
+  color: #e8f0f4;
+  border: none;
+}
+QToolButton {
+  color: #e8f0f4;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 4px;
+}
+QToolButton:hover {
+  background-color: #20323d;
+  border-color: #355665;
+}
+QToolButton:checked, QToolButton:pressed {
+  background-color: #173b49;
+  border-bottom: 2px solid #6ec8dd;
+}
+QMenu {
+  background-color: #101820;
+  color: #e8f0f4;
+  border: 1px solid #355665;
+}
+QMenu::item:selected {
+  background-color: #174b5b;
+  color: #ffffff;
+}
+QToolTip {
+  background-color: #101820;
+  color: #e8f0f4;
+  border: 1px solid #6ec8dd;
+}

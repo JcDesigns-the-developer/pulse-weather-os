@@ -1,0 +1,5 @@
+NAME=Pulse Weather OS
+BASE_DISTRIBUTION=Debian GNU/Linux 13 Trixie
+DESKTOP=LXQt
+STATUS=development
+WEATHER_DATA_POLICY=No simulated data may be represented as live
