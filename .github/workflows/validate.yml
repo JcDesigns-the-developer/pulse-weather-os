@@ -20,3 +20,5 @@ jobs:
           grep -qx 'sddm' os/config/package-lists/pulse-weather.list.chroot
           grep -qx 'network-manager' os/config/package-lists/pulse-weather.list.chroot
           grep -qx 'firefox-esr' os/config/package-lists/pulse-weather.list.chroot
+      - name: Run shared data contract tests
+        run: PYTHONPATH=packages/wxcore python3 -m unittest discover -s packages/wxcore/tests -v
