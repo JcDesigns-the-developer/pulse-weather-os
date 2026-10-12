@@ -1,5 +1,7 @@
 # Desktop and session
 lxqt
+lxqt-themes
+oxygen-icon-theme
 sddm
 dbus-x11
 xserver-xorg
