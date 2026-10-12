@@ -1,13 +1,11 @@
 # Desktop and session
 lxqt
 sddm
-sddm-theme-debian-maui
 dbus-x11
 xserver-xorg
 x11-xserver-utils
 # Networking and audio
 network-manager
-network-manager-gnome
 pipewire
 pipewire-audio
 pipewire-pulse
@@ -38,8 +36,7 @@ mesa-utils
 fonts-dejavu
 fonts-noto-core
 fonts-noto-color-emoji
-# Live session and installer
+# Live session
 live-boot
 live-config
 live-config-systemd
-calamares
