@@ -1,0 +1,45 @@
+# Desktop and session
+lxqt
+sddm
+sddm-theme-debian-maui
+dbus-x11
+xserver-xorg
+x11-xserver-utils
+# Networking and audio
+network-manager
+network-manager-gnome
+pipewire
+pipewire-audio
+pipewire-pulse
+wireplumber
+pavucontrol
+# Browser and terminal
+firefox-esr
+qterminal
+pcmanfm-qt
+# Archive and system utilities
+ark
+bzip2
+xz-utils
+zip
+unzip
+curl
+wget
+ca-certificates
+sudo
+less
+nano
+vim-tiny
+htop
+lshw
+pciutils
+usbutils
+mesa-utils
+fonts-dejavu
+fonts-noto-core
+fonts-noto-color-emoji
+# Live session and installer
+live-boot
+live-config
+live-config-systemd
+calamares
