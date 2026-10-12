@@ -12,6 +12,12 @@ Edit `config/pulse-build.conf` to change the OS label, target architecture, imag
 
 The selected profile is temporarily activated during a build; the checked-in `.disabled` profile manifests remain inactive in normal live-build discovery. Edit `config/package-lists/pulse-weather.list.chroot` to add or remove always-installed packages. Files under `config/includes.chroot/` are copied into the live filesystem at their matching paths. Installer defaults live in `config/binary_debian-installer/preseed.cfg`.
 
+## Pulse desktop identity
+
+The live desktop has a Pulse-branded LXQt theme overlay, a custom SVG wallpaper, a local Pulse Weather Center welcome launcher, and session appearance defaults. These are project-owned configuration and artwork layered over upstream LXQt; upstream components keep their own licenses and attribution. See [Desktop identity](../docs/DESKTOP_IDENTITY.md).
+
+The desktop theme is an initial implementation and still needs visual verification in a booted ISO. The default wallpaper asset is included, but automatic PCManFM-Qt background selection must be confirmed during that test.
+
 ## Installer safety
 
 The current installer mode installs the live system to disk. The included preseed only selects locale, keyboard, and UTC time. It deliberately does not choose a disk, partitioning method, password, or unattended installation. Keep disk operations interactive unless you explicitly design and test a safe unattended installer.
