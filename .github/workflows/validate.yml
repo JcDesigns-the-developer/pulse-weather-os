@@ -1,0 +1,22 @@
+name: Validate repository
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  shell-and-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: bash -n scripts/build-iso.sh
+      - name: Check package list exists and is non-empty
+        run: test -s os/config/package-lists/pulse-weather.list.chroot
+      - name: Check critical packages are declared
+        run: |
+          grep -qx 'lxqt' os/config/package-lists/pulse-weather.list.chroot
+          grep -qx 'sddm' os/config/package-lists/pulse-weather.list.chroot
+          grep -qx 'network-manager' os/config/package-lists/pulse-weather.list.chroot
+          grep -qx 'firefox-esr' os/config/package-lists/pulse-weather.list.chroot
