@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101820"/>
+      <stop offset="1" stop-color="#05080c"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#1b6075" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#1b6075" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <circle cx="1450" cy="450" r="610" fill="url(#glow)"/>
+  <g fill="none" stroke="#6ec8dd" stroke-opacity=".13" stroke-width="2">
+    <circle cx="1450" cy="450" r="170"/><circle cx="1450" cy="450" r="250"/>
+    <circle cx="1450" cy="450" r="330"/><circle cx="1450" cy="450" r="410"/>
+    <path d="M980 450H1920M1450 0V1080M1110 110L1790 790M1110 790L1790 110"/>
+  </g>
+  <path d="M1240 490c-30-78 37-151 105-151 22-72 131-95 180-23 83-2 123 75 93 133 48 47 18 123-42 128h-288c-65-1-89-46-48-87z" fill="#9ad6e3" fill-opacity=".13" stroke="#80cfdf" stroke-opacity=".58" stroke-width="3"/>
+  <path d="M1300 510l72-63 43 27 65-88 62 47 53-23" fill="none" stroke="#b3e9f2" stroke-opacity=".75" stroke-width="5"/>
+  <g fill="#e9f4f7">
+    <text x="130" y="420" font-family="sans-serif" font-size="30" letter-spacing="8" opacity=".78">METEOROLOGY WORKSTATION</text>
+    <text x="122" y="530" font-family="sans-serif" font-size="112" font-weight="700" letter-spacing="-3">PULSE</text>
+    <text x="130" y="590" font-family="sans-serif" font-size="34" letter-spacing="9" opacity=".8">WEATHER OS</text>
+    <rect x="130" y="635" width="170" height="5" rx="2" fill="#6ec8dd"/>
+    <text x="130" y="690" font-family="sans-serif" font-size="22" letter-spacing="3" opacity=".62">OBSERVE  /  ANALYZE  /  UNDERSTAND</text>
+  </g>
+  <g fill="#6ec8dd" opacity=".55"><circle cx="1050" cy="210" r="3"/><circle cx="1720" cy="700" r="4"/><circle cx="1200" cy="820" r="2"/><circle cx="1650" cy="240" r="2"/></g>
+</svg>
