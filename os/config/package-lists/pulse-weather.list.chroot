@@ -27,12 +27,6 @@ ca-certificates
 sudo
 less
 nano
-vim-tiny
-htop
-lshw
-pciutils
-usbutils
-mesa-utils
 fonts-dejavu
 fonts-noto-core
 fonts-noto-color-emoji
