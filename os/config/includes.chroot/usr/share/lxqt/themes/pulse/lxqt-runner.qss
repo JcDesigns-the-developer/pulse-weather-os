@@ -1,0 +1,5 @@
+/* Pulse Weather OS — application runner */
+QWidget { background-color: #101820; color: #e8f0f4; }
+QLineEdit { background-color: #080d12; color: #e8f0f4; border: 1px solid #355665; padding: 7px; }
+QListView { background-color: #101820; color: #e8f0f4; border: 1px solid #263b45; }
+QListView::item:selected { background-color: #174b5b; }
