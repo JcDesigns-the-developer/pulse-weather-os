@@ -1,19 +1,26 @@
 # Pulse Weather OS
 
-Pulse Weather OS is a Debian 13 (Trixie)-based weather workstation project focused on live NEXRAD radar, severe-weather analysis, tropical cyclone monitoring, and field observations.
+Pulse Weather OS is a Debian 13 (Trixie)-based meteorology workstation for live NEXRAD radar, severe-weather analysis, tropical cyclone monitoring, forecasting, observations, field operations, and briefing production.
 
-**Current status: development foundation.** This repository is not yet a bootable release. No ISO is published until a reproducible build has completed and been tested.
+**Current status: early development foundation.** This branch is not yet a bootable release. No ISO is published until a reproducible build has completed and been tested.
 
 ## Design goals
 
 - Conventional LXQt desktop, SDDM login, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
-- Integrate the real [Supercell Wx](https://github.com/dpaulat/supercell-wx) C++/Qt radar application, preserving upstream notices and license.
-- Keep experimental storm analysis clearly separated from official NWS warnings and NHC forecasts.
-- Reproducible builds, documented data sources, tests, no mandatory telemetry, and no simulated data presented as live.
+- Use the real [Supercell Wx](https://github.com/dpaulat/supercell-wx) C++/Qt radar application as a reference and initial radar engine, preserving upstream functionality, notices, and license.
+- Build a broader set of custom meteorology applications rather than treating one radar program as the whole product.
+- Keep official NWS/NHC products, observations, model guidance, analyst annotations, and experimental analysis visibly distinct.
+- Reproducible builds, documented data sources, automated tests, no mandatory telemetry, and no simulated data presented as live.
 
-## Repository status
+## Custom application suite
 
-The initial implementation milestone establishes Debian Live Build configuration, a package manifest, build helper, CI validation, and project safety notes. Application integration and ISO validation remain in progress.
+See [Custom Meteorology Application Suite](docs/CUSTOM_APP_SUITE.md) for the planned radar, storm analysis, warning, tropical, forecast/model, sounding, satellite, hydrology, marine, station, field reporting, briefing, archive, and diagnostic applications. See [Application Architecture](docs/APP_ARCHITECTURE.md) for shared data contracts, source provenance, cache behavior, and test requirements.
+
+The first shared code package, `packages/wxcore`, implements a dependency-free weather-record envelope with timezone-aware timestamps, source classes, freshness status, and provenance fields. Its unit tests are included in CI. This does not yet mean the provider adapters or end-user apps are complete.
+
+## Current status
+
+The repository has the Debian Live Build foundation, a package manifest, guarded build helper, CI validation, application catalog, shared data contract, and unit tests. Supercell Wx integration, official data adapters, desktop applications, and ISO validation remain in progress. Track work in [the roadmap](docs/ROADMAP.md).
 
 ## Build on Debian 13
 
@@ -39,7 +46,7 @@ Use a clean Debian 13 VM with ample disk space and RAM. This configuration has n
 Upstream project: https://github.com/dpaulat/supercell-wx  
 Upstream documentation: https://supercell-wx.readthedocs.io/
 
-Upstream describes Supercell Wx as a C++/Qt application for live and archived NEXRAD Level 2/Level 3 data and severe-weather alerts. Pulse Weather OS will package and enhance that application rather than substitute a web mockup. Upstream code remains subject to its own copyright, license, and third-party dependency terms.
+Upstream describes Supercell Wx as a C++/Qt application for live and archived NEXRAD Level 2/Level 3 data and severe-weather alerts. Pulse Weather OS will integrate the actual application rather than substitute a web mockup. Upstream code remains subject to its own copyright, license, and third-party dependency terms.
 
 ## Safety and data integrity
 
