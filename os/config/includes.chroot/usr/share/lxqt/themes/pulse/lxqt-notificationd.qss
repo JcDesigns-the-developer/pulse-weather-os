@@ -1,0 +1,5 @@
+/* Pulse Weather OS — notifications */
+QWidget { background-color: #101820; color: #e8f0f4; border: 1px solid #355665; }
+QLabel { color: #e8f0f4; }
+QPushButton { background-color: #173b49; color: #ffffff; border: 1px solid #4d8797; padding: 4px 8px; }
+QPushButton:hover { background-color: #20596b; }
