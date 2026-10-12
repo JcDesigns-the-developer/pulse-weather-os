@@ -6,7 +6,8 @@ Pulse Weather OS is a Debian 13 (Trixie)-based meteorology workstation for live 
 
 ## Desktop and base system
 
-- Lean, conventional LXQt desktop, SDDM, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
+- LXQt desktop with original Pulse-branded theme overlays, a custom SVG wallpaper asset, Pulse Weather Center welcome launcher, and SDDM/NetworkManager/PipeWire/Firefox ESR/QTerminal/PCManFM-Qt.
+- Desktop identity and licensing boundaries: [`docs/DESKTOP_IDENTITY.md`](docs/DESKTOP_IDENTITY.md).
 - Debian 13 packages and Debian Live Build, rather than a private copy of the entire Debian source archive.
 - Debian Installer in live-install mode, with conservative preseed defaults that do not choose a disk or automate partitioning.
 - Configurable ISO metadata, installer settings, and package profiles; optional development tools are kept out of the base image.
