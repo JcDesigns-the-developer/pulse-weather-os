@@ -1,0 +1,12 @@
+# Optional development tools for building and debugging Pulse applications.
+# Enabled when PULSE_PACKAGE_PROFILE=developer in config/pulse-build.conf.
+python3
+python3-pip
+python3-venv
+git
+build-essential
+cmake
+ninja-build
+pkg-config
+qt6-base-dev
+qt6-tools-dev
