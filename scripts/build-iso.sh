@@ -47,12 +47,12 @@ PROFILE_ACTIVE="$OS_DIR/config/package-lists/pulse-profile-selected.list.chroot"
 cleanup() {
   rm -f -- "$PROFILE_ACTIVE"
 }
+[[ ! -e "$PROFILE_ACTIVE" ]] || fail "temporary profile manifest already exists: $PROFILE_ACTIVE; remove it after checking for an interrupted build."
 trap cleanup EXIT
 
 if [[ "$PULSE_PACKAGE_PROFILE" != "base" ]]; then
   PROFILE_SOURCE="$OS_DIR/config/package-lists/pulse-profile-$PULSE_PACKAGE_PROFILE.list.chroot.disabled"
   [[ -s "$PROFILE_SOURCE" ]] || fail "selected profile manifest is missing or empty: $PROFILE_SOURCE"
-  [[ ! -e "$PROFILE_ACTIVE" ]] || fail "temporary profile manifest already exists: $PROFILE_ACTIVE; remove it after checking for an interrupted build."
   cp -- "$PROFILE_SOURCE" "$PROFILE_ACTIVE"
 fi
 
