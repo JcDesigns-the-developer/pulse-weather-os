@@ -27,7 +27,7 @@ sudo apt install --yes live-build git ca-certificates
 From the repository root:
 
 ```sh
-sudo ./scripts/build-iso.sh
+sudo bash ./scripts/build-iso.sh
 ```
 
 The helper checks for Debian 13 and required tools, runs live-build, and verifies that a non-empty ISO exists before writing a SHA-256 checksum. It does not claim success unless the artifact is present.
