@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 OS_DIR="$ROOT/os"
-OUTPUT="$ROOT/live-image-amd64.hybrid.iso"
+OUTPUT="$OS_DIR/live-image-amd64.hybrid.iso"
 
 fail() {
   printf 'Pulse Weather OS build error: %s\n' "$*" >&2
@@ -13,23 +13,17 @@ fail() {
 [[ $EUID -eq 0 ]] || fail "run with sudo on a clean Debian 13 build host."
 command -v lb >/dev/null 2>&1 || fail "live-build is missing; install it with: apt install live-build"
 command -v dpkg-query >/dev/null 2>&1 || fail "dpkg-query is unavailable."
-command -v git >/dev/null 2>&1 || fail "git is required to inspect source provenance."
 
 if ! grep -qE '^VERSION_CODENAME=trixie$' /etc/os-release; then
-  fail "the build host must be Debian 13 Trixie. Use a clean Debian 13 VM/container."
+  fail "the build host must be Debian 13 Trixie. Use a clean Debian 13 VM."
 fi
 
-mkdir -p "$OS_DIR/config"
 cd "$OS_DIR"
-
-# Configure a hybrid amd64 image suitable for UEFI and legacy BIOS where
-# supported by Debian live-build. Actual bootability still requires testing.
 lb config \
   --distribution trixie \
   --architectures amd64 \
   --binary-images iso-hybrid \
   --debian-installer live \
-  --debian-installer-gui true \
   --archive-areas "main contrib non-free-firmware" \
   --apt-recommends true \
   --iso-application "Pulse Weather OS" \
@@ -39,9 +33,9 @@ lb config \
 lb build
 
 if [[ ! -s "$OUTPUT" ]]; then
-  fail "live-build finished without the expected ISO at $OUTPUT; inspect live-build logs and output files."
+  fail "live-build finished without the expected ISO at $OUTPUT; inspect build logs and output files."
 fi
 
 sha256sum "$OUTPUT" > "$OUTPUT.sha256"
 printf '\nBuild produced: %s\nChecksum: %s.sha256\n' "$OUTPUT" "$OUTPUT"
-printf 'Reminder: verify BIOS/UEFI boot and install behavior before publishing this image.\n'
+printf 'Reminder: verify BIOS/UEFI boot and installation before publishing this image.\n'
