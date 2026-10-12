@@ -6,14 +6,14 @@ Pulse Weather OS is a Debian 13 (Trixie)-based meteorology workstation for live 
 
 ## Desktop and base system
 
-- Conventional LXQt desktop, SDDM, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
+- Lean, conventional LXQt desktop, SDDM, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
 - Debian 13 packages and Debian Live Build, rather than a private copy of the entire Debian source archive.
 - Debian Installer in live-install mode, with conservative preseed defaults that do not choose a disk or automate partitioning.
-- Configurable ISO metadata, installer settings, and package profiles.
+- Configurable ISO metadata, installer settings, and package profiles; optional development tools are kept out of the base image.
 
 ## Customize the ISO
 
-Edit `os/config/pulse-build.conf`. Select `PULSE_PACKAGE_PROFILE="base"`, `"meteorology"`, or `"developer"`. Add or remove always-installed packages in `os/config/package-lists/pulse-weather.list.chroot`; customize files in `os/config/includes.chroot/`; adjust safe installer defaults in `os/config/includes.installer/preseed.cfg`.
+Edit `os/config/pulse-build.conf`. Select `PULSE_PACKAGE_PROFILE="base"`, `"meteorology"`, or `"developer"`. Add or remove always-installed packages in `os/config/package-lists/pulse-weather.list.chroot`; customize files in `os/config/includes.chroot/`; adjust safe installer defaults in `os/config/binary_debian-installer/preseed.cfg`.
 
 Build on a clean Debian 13 Trixie host:
 
