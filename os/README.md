@@ -6,11 +6,11 @@ This directory is the Pulse Weather OS derivative configuration layered on top o
 
 Edit `config/pulse-build.conf` to change the OS label, target architecture, image name, installer mode, ISO metadata, and package profile. Supported profiles:
 
-- `base` — desktop and essential utilities only.
+- `base` — lean desktop and essential utilities.
 - `meteorology` — base plus a scientific Python/geospatial stack.
-- `developer` — base plus compilers, CMake/Ninja, Git, and Qt development packages.
+- `developer` — base plus compilers, CMake/Ninja, Git, Qt development packages, and optional hardware diagnostics.
 
-The selected profile is temporarily activated during a build; the checked-in `.disabled` profile manifests remain inactive in normal live-build discovery. Edit `config/package-lists/pulse-weather.list.chroot` to add or remove always-installed packages. Files under `config/includes.chroot/` are copied into the live filesystem at their matching paths. Installer defaults live in `config/includes.installer/preseed.cfg`.
+The selected profile is temporarily activated during a build; the checked-in `.disabled` profile manifests remain inactive in normal live-build discovery. Edit `config/package-lists/pulse-weather.list.chroot` to add or remove always-installed packages. Files under `config/includes.chroot/` are copied into the live filesystem at their matching paths. Installer defaults live in `config/binary_debian-installer/preseed.cfg`.
 
 ## Installer safety
 
