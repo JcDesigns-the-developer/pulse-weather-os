@@ -8,5 +8,11 @@ build-essential
 cmake
 ninja-build
 pkg-config
+htop
+lshw
+pciutils
+usbutils
+mesa-utils
+vim-tiny
 qt6-base-dev
 qt6-tools-dev
