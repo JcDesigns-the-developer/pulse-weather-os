@@ -2,58 +2,48 @@
 
 Pulse Weather OS is a Debian 13 (Trixie)-based meteorology workstation for live NEXRAD radar, severe-weather analysis, tropical cyclone monitoring, forecasting, observations, field operations, and briefing production.
 
-**Current status: early development foundation.** This branch is not yet a bootable release. No ISO is published until a reproducible build has completed and been tested.
+**Current status: development foundation; no verified ISO release yet.** This branch combines the earlier meteorology app and shared-code work with a more customizable Debian Live Build and installer configuration.
 
-## Design goals
+## Desktop and base system
 
-- Conventional LXQt desktop, SDDM login, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
-- Use the real [Supercell Wx](https://github.com/dpaulat/supercell-wx) C++/Qt radar application as a reference and initial radar engine, preserving upstream functionality, notices, and license.
-- Build a broader set of custom meteorology applications rather than treating one radar program as the whole product.
-- Keep official NWS/NHC products, observations, model guidance, analyst annotations, and experimental analysis visibly distinct.
-- Reproducible builds, documented data sources, automated tests, no mandatory telemetry, and no simulated data presented as live.
+- Conventional LXQt desktop, SDDM, NetworkManager, PipeWire, Firefox ESR, QTerminal, and PCManFM-Qt.
+- Debian 13 packages and Debian Live Build, rather than a private copy of the entire Debian source archive.
+- Debian Installer in live-install mode, with conservative preseed defaults that do not choose a disk or automate partitioning.
+- Configurable ISO metadata, installer settings, and package profiles.
 
-## Custom application suite
+## Customize the ISO
 
-See [Custom Meteorology Application Suite](docs/CUSTOM_APP_SUITE.md) for the planned radar, storm analysis, warning, tropical, forecast/model, sounding, satellite, hydrology, marine, station, field reporting, briefing, archive, and diagnostic applications. See [Application Architecture](docs/APP_ARCHITECTURE.md) for shared data contracts, source provenance, cache behavior, and test requirements.
+Edit `os/config/pulse-build.conf`. Select `PULSE_PACKAGE_PROFILE="base"`, `"meteorology"`, or `"developer"`. Add or remove always-installed packages in `os/config/package-lists/pulse-weather.list.chroot`; customize files in `os/config/includes.chroot/`; adjust safe installer defaults in `os/config/includes.installer/preseed.cfg`.
 
-The first shared code package, `packages/wxcore`, implements a dependency-free weather-record envelope with timezone-aware timestamps, source classes, freshness status, and provenance fields. Its unit tests are included in CI. This does not yet mean the provider adapters or end-user apps are complete.
-
-## Current status
-
-The repository has the Debian Live Build foundation, a package manifest, guarded build helper, CI validation, application catalog, shared data contract, and unit tests. Supercell Wx integration, official data adapters, desktop applications, and ISO validation remain in progress. Track work in [the roadmap](docs/ROADMAP.md).
-
-## Build on Debian 13
-
-Install build dependencies:
+Build on a clean Debian 13 Trixie host:
 
 ```sh
 sudo apt update
 sudo apt install --yes live-build git ca-certificates
-```
-
-From the repository root:
-
-```sh
 sudo bash ./scripts/build-iso.sh
 ```
 
-The helper checks for Debian 13 and required tools, runs live-build, and verifies that a non-empty ISO exists before writing a SHA-256 checksum. It does not claim success unless the artifact is present.
+The output name is controlled by `PULSE_IMAGE_NAME` and the script writes a SHA-256 checksum. A successful build has not yet been verified; do not treat an ISO as release-ready until BIOS/UEFI boot, networking, desktop login, live-session behavior, and installation have been tested.
 
-Use a clean Debian 13 VM with ample disk space and RAM. This configuration has not yet been validated by a complete ISO build. Do not treat the resulting image as release-ready until BIOS/UEFI boot, networking, desktop login, live-session behavior, and installation have been tested.
+## Meteorology application suite
 
-## Supercell Wx upstream
+See [Custom Meteorology Application Suite](docs/CUSTOM_APP_SUITE.md) for the planned radar, storm analysis, warning, tropical, forecast/model, sounding, satellite, hydrology, marine, station, field reporting, briefing, archive, and diagnostic applications. [Application Architecture](docs/APP_ARCHITECTURE.md) defines shared data contracts, provenance, cache behavior, and test requirements.
 
-Upstream project: https://github.com/dpaulat/supercell-wx  
-Upstream documentation: https://supercell-wx.readthedocs.io/
+[Supercell Wx](https://github.com/dpaulat/supercell-wx) is the reference and intended initial radar engine—not the whole operating system. The actual upstream application has not yet been built or integrated.
 
-Upstream describes Supercell Wx as a C++/Qt application for live and archived NEXRAD Level 2/Level 3 data and severe-weather alerts. Pulse Weather OS will integrate the actual application rather than substitute a web mockup. Upstream code remains subject to its own copyright, license, and third-party dependency terms.
+The first shared code package, `packages/wxcore`, defines source classes, freshness status, timezone-aware timestamps, and provenance fields. Unit tests are part of the GitHub Actions workflow. Provider adapters and end-user weather apps remain in progress.
 
-## Safety and data integrity
+## Debian derivative design
 
+See [Debian derivative strategy](docs/DEBIAN_DERIVATIVE.md) and [OS build customization](os/README.md). This project uses official Debian packages and a local Live Build configuration overlay; it does not pretend to maintain the full Debian source archive.
+
+## Data integrity
+
+- Official NWS/NHC products, observations, model guidance, analyst annotations, and experimental output remain visibly distinct.
 - Radar signatures are evidence, not proof of a tornado on the ground.
-- Experimental detections and extrapolated polygons must be labeled experimental and include timestamps and provenance.
-- Official NWS alerts and NHC forecast products must remain visibly distinct from experimental analysis.
-- Do not add credentials, API keys, private tokens, or user-specific configuration to source control.
+- Experimental polygons must include source timestamps, provenance, and algorithm version.
+- No simulated data may be represented as live.
+- Do not commit credentials, API keys, or private tokens.
 
 ## License
 
