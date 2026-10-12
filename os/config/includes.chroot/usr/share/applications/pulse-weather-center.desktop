@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pulse Weather Center
+GenericName=Meteorology Workstation
+Comment=Open the Pulse Weather OS weather tools and documentation
+Exec=xdg-open /usr/share/doc/pulse-weather-os/README.html
+Icon=weather-storm
+Terminal=false
+Categories=Science;Education;Utility;
+StartupNotify=true
