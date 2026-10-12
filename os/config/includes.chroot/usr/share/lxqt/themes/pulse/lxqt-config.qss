@@ -1,0 +1,11 @@
+/* Pulse Weather OS — settings tools */
+QWidget { background-color: #101820; color: #e8f0f4; }
+QGroupBox { border: 1px solid #355665; margin-top: 8px; padding-top: 8px; }
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox, QTextEdit, QPlainTextEdit {
+  background-color: #080d12; color: #e8f0f4; border: 1px solid #355665; padding: 3px;
+}
+QPushButton { background-color: #182a34; color: #e8f0f4; border: 1px solid #355665; padding: 5px 10px; }
+QPushButton:hover { background-color: #203d4a; border-color: #6ec8dd; }
+QCheckBox::indicator:checked { background-color: #287d92; border: 1px solid #6ec8dd; }
+QTabBar::tab { background: #14212a; color: #c8d7dd; padding: 6px 12px; }
+QTabBar::tab:selected { background: #173b49; border-bottom: 2px solid #6ec8dd; }
