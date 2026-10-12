@@ -10,15 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check shell syntax
+      - name: Check build script syntax
         run: bash -n scripts/build-iso.sh
-      - name: Check package list exists and is non-empty
-        run: test -s os/config/package-lists/pulse-weather.list.chroot
-      - name: Check critical packages are declared
+      - name: Check base and optional package manifests
+        run: |
+          test -s os/config/package-lists/pulse-weather.list.chroot
+          test -s os/config/package-lists/pulse-profile-meteorology.list.chroot.disabled
+          test -s os/config/package-lists/pulse-profile-developer.list.chroot.disabled
+      - name: Check critical desktop packages
         run: |
           grep -qx 'lxqt' os/config/package-lists/pulse-weather.list.chroot
           grep -qx 'sddm' os/config/package-lists/pulse-weather.list.chroot
           grep -qx 'network-manager' os/config/package-lists/pulse-weather.list.chroot
           grep -qx 'firefox-esr' os/config/package-lists/pulse-weather.list.chroot
+      - name: Ensure installer preseed does not automate disk partitioning
+        run: |
+          test -s os/config/binary_debian-installer/preseed.cfg
+          ! grep -Eq 'partman-auto|partman/confirm|passwd/user-password' os/config/binary_debian-installer/preseed.cfg
       - name: Run shared data contract tests
         run: PYTHONPATH=packages/wxcore python3 -m unittest discover -s packages/wxcore/tests -v
